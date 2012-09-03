@@ -1,0 +1,112 @@
+#
+#	File:		ASyncClientServer_Reader
+#
+#	Contains:	xxx put contents here xxx
+#
+#	Written by:	Brian Topping
+#
+#	Copyright:	© 1994 by Catapult Entertainment, Inc., all rights reserved.
+#
+#	Change History (most recent first):
+#
+#		 <2>	 6/30/94	BET		Added param to POpen/PListen to use default connection.
+#		 <1>	 6/30/94	BET		first checked in
+#
+#	To Do:
+#
+
+#	Communications Protocol Test Script
+#	Simple ASync Client and Server relationship
+#	This script seems to work
+
+#	start up the client
+PInit
+TInit
+PListen 1
+TListen 600
+
+loop 10000
+#	read 40 bytes of random data
+#	be really polite about not rushing anything
+WAIT 1
+TReadDataSync 940
+BEEP
+WAIT 6
+
+#	read 40 bytes of random data
+#	read slowly - the packets are being
+#	written as fast as possible
+#LOOP 10
+	WAIT 6
+	TReadDataSync 940
+	BEEP
+#ENDLOOP
+
+#	read 40 bytes of random data
+#	wait for 3 seconds before posting the read command
+WAIT 1
+WAIT 18
+TReadDataSync 940
+BEEP
+
+
+#	read 40 bytes of random data
+#	be really polite about not rushing anything
+WAIT 1
+#LOOP 10
+	TReadDataSync 940
+	BEEP
+	WAIT 6
+#ENDLOOP
+
+#	write 40 bytes of random data 3 times
+#	trash the second packet
+WAIT 1
+TReadDataSync 940
+BEEP
+TReadDataSync 941
+BEEP
+TReadDataSync 942
+BEEP
+
+#	read 40 bytes of random data 20 times
+#	random packets have been trashed
+WAIT 1
+#LOOP 20
+	TReadDataSync 940
+	BEEP
+#ENDLOOP
+
+#	read 40 bytes of random data
+#	be really polite about not rushing anything
+WAIT 1
+TReadDataSync 940
+BEEP
+WAIT 6
+
+#	read 40 bytes of random data
+#	the data should have been trashed the
+#	first time it was sent
+#	we should get it anyway
+WAIT 1
+TReadDataSync 940
+BEEP
+
+#	read 40 bytes of random data
+#	the data should have been trashed the
+#	first time it was sent
+#	we should get it anyway
+WAIT 1
+TReadDataSync 940
+BEEP
+TReadDataSync 939
+BEEP
+TReadDataSync 938
+BEEP
+TReadDataSync 937
+BEEP
+endloop
+#	close down the connection
+TClose
+PClose
+BEEP

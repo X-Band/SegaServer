@@ -1,0 +1,38 @@
+#
+#	File:		SimpleClientServer_Reader
+#
+#	Contains:	xxx put contents here xxx
+#
+#	Written by:	Brian Topping
+#
+#	Copyright:	© 1994 by Catapult Entertainment, Inc., all rights reserved.
+#
+#	Change History (most recent first):
+#
+#		 <2>	 6/30/94	BET		Added param to POpen/PListen to use default connection.
+#		 <1>	 6/30/94	BET		first checked in
+#
+#	To Do:
+#
+
+#	Communications Protocol Test Script
+#	Simple Client and Server relationship
+#	This script seems to work
+
+#	start up the client
+PInit
+TInit
+PListen 1
+TListen 600
+
+#	read 40 bytes of random data
+#	be really polite about not rushing anything
+WAIT 1
+TReadDataSync 40
+BEEP
+WAIT 60
+
+#	close down the connection
+TClose
+PClose
+BEEP

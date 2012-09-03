@@ -1,0 +1,46 @@
+#
+#	File:		TrashTest_Reader
+#
+#	Contains:	xxx put contents here xxx
+#
+#	Written by:	Brian Topping
+#
+#	Copyright:	© 1994 by Catapult Entertainment, Inc., all rights reserved.
+#
+#	Change History (most recent first):
+#
+#		 <2>	 6/30/94	BET		Added param to POpen/PListen to use default connection.
+#		 <1>	 6/30/94	BET		first checked in
+#
+#	To Do:
+#
+
+#	Communications Protocol Test Script
+#	Simple ASync Client and Server relationship
+#	Trash the data in several different ways
+#	This script fails!
+
+#	start up the client
+PInit
+TInit
+PListen 1
+TListen 600
+
+#	read 40 bytes of random data
+#	the data should have been trashed the
+#	first time it was sent
+#	we should get it anyway
+WAIT 1
+TReadDataSync 40
+BEEP
+TReadDataSync 39
+BEEP
+TReadDataSync 38
+BEEP
+TReadDataSync 37
+BEEP
+
+#	close down the connection
+TClose
+PClose
+BEEP

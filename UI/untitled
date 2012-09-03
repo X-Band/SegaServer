@@ -1,0 +1,8 @@
+int main(int argc, char *argv[])
+{
+ServerState *boxState;
+
+	boxState = InitServer(nil);
+	while (boxState)
+		DoCommand(fBoxState);
+}

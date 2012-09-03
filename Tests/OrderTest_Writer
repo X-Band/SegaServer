@@ -1,0 +1,48 @@
+#
+#	File:		OrderTest_Writer
+#
+#	Contains:	xxx put contents here xxx
+#
+#	Written by:	Brian Topping
+#
+#	Copyright:	© 1994 by Catapult Entertainment, Inc., all rights reserved.
+#
+#	Change History (most recent first):
+#
+#		 <2>	 6/30/94	BET		Added param to POpen/PListen to use default connection.
+#		 <1>	 6/30/94	BET		first checked in
+#
+#	To Do:
+#
+
+#	Communications Protocol Test Script
+#	Order Test
+#	Send three packets
+#	Trash the middle one
+#	This script seems to work
+
+#	start up the client
+PInit
+TInit
+POpen 1
+TOpen
+
+#	write 40 bytes of random data 3 times
+#	trash the second packet
+WAIT 1
+BEEP
+TWriteDataASync 40
+
+BEEP
+TRASHCRC
+TWriteDataASync 41
+
+BEEP
+TWriteDataASync 42
+
+WAIT 600
+
+#	close down the connection
+TClose
+PClose
+BEEP

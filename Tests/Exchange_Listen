@@ -1,0 +1,39 @@
+#
+#	File:		Exchange_Listen
+#
+#	Contains:	xxx put contents here xxx
+#
+#	Written by:	Brian Topping
+#
+#	Copyright:	© 1994 by Catapult Entertainment, Inc., all rights reserved.
+#
+#	Change History (most recent first):
+#
+#		 <2>	 6/30/94	BET		Added param to POpen/PListen to use default connection.
+#		 <1>	 6/30/94	BET		first checked in
+#
+#	To Do:
+#
+
+#	Communications Protocol Test Script
+#	Simple ASync Client and Server relationship
+#	This script fails!
+
+#	start up the client
+PInit
+TInit
+PListen 1
+TListen 600
+
+#	read 40 bytes of random data
+#	send and receive as fast as possible
+LOOP 10
+	BEEP
+	TWriteDataASync 40
+	TReadDataSync 40
+ENDLOOP
+
+#	close down the connection
+TClose
+PClose
+BEEP
